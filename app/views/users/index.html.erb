@@ -1,0 +1,20 @@
+<h1></h1>
+<div><%= link_to '新規登録', new_user_path %></div>
+　<table>
+    <thead>
+        <tr>
+        <th>学年</th>
+        <th>名前</th>
+        <th>性別</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @users.each do |user| %>
+        <tr>
+            <td><%= user.grade %></td>
+            <td><%= user.name %></td>
+            <td><%= user.gender %></td>
+        </tr>
+        <% end %>
+    </tbody>
+　</table>

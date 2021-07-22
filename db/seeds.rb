@@ -5,3 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+if Rails.env == 'development'
+    (1..50).each do |i|
+        grade = [1, 2].sample
+        gender = [0, 1].sample
+
+        User.create(name: "ユーザー#{i}", grade: grade, gender: gender)
+    end
+end
