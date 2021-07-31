@@ -2,30 +2,42 @@
 <div><%= link_to '新規登録', new_user_path %></div>
 <div>
 <%= form_tag("/users") do %>
-    <ul>
-		  <h2>一年男子</h2>
-    	<% @first_mans.each do |first_man| %>
-        <li><%= check_box "first_m", first_man.name %><%= first_man.name %></li>     
-    	<% end %>
-    </ul>
-    <ul>
-			<h2>一年女子</h2>
-    	<% @first_womans.each do |first_woman| %>
-        <li><%= check_box "first_w", first_woman.name %><%= first_woman.name %></li>     
-    	<% end %>
-    </ul>
-    <ul>
-			<h2>二年男子</h2>
-    	<% @second_mans.each do |second_man| %>
-        <li><%= check_box "second_m", second_man.name %><%= second_man.name %></li>     
-    	<% end %>
-    </ul>
-    <ul>
-			<h2>二年女子</h2>
-    	<% @second_womans.each do |second_woman| %>
-        <li><%= check_box "second_w", second_woman.name %><%= second_woman.name %></li>     
-    	<% end %>
-    </ul>
+    <div>
+			<ul>
+				<h2>一年男子</h2>
+				<% @first_mans.each do |first_man| %>
+					<li><%= check_box "first_m", first_man.name %><%= first_man.name %></li>     
+				<% end %>
+			</ul>
+			<%= text_field :max_count, :first_m %>
+    </div>
+    <div>
+			<ul>
+				<h2>一年女子</h2>
+				<% @first_womans.each do |first_woman| %>
+					<li><%= check_box "first_w", first_woman.name %><%= first_woman.name %></li>     
+				<% end %>
+			</ul>
+			<%= text_field :max_count, :first_w %>
+		</div>
+    <div>
+			<ul>
+				<h2>二年男子</h2>
+				<% @second_mans.each do |second_man| %>
+					<li><%= check_box "second_m", second_man.name %><%= second_man.name %></li>     
+				<% end %>
+			</ul>
+			<%= text_field :max_count, :second_m %>
+		</div>
+		<div>	
+			<ul>
+				<h2>二年女子</h2>
+				<% @second_womans.each do |second_woman| %>
+					<li><%= check_box "second_w", second_woman.name %><%= second_woman.name %></li>     
+				<% end %>
+			</ul>
+			<%= text_field :max_count, :second_w %>
+		</div>
     <input type="submit" value="投稿">
 <% end %>
 </div>        
