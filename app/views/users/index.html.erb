@@ -1,20 +1,32 @@
-<h1></h1>
+<h1>抽選していこうや</h1>
 <div><%= link_to '新規登録', new_user_path %></div>
-　<table>
-    <thead>
-        <tr>
-        <th>学年</th>
-        <th>名前</th>
-        <th>性別</th>
-        </tr>
-    </thead>
-    <tbody>
-        <% @users.each do |user| %>
-        <tr>
-            <td><%= user.grade %></td>
-            <td><%= user.name %></td>
-            <td><%= user.gender %></td>
-        </tr>
-        <% end %>
-    </tbody>
-　</table>
+<div>
+<%= form_tag("/users") do %>
+    <ul>
+		  <h2>一年男子</h2>
+    	<% @first_mans.each do |first_man| %>
+        <li><%= check_box "first_m", first_man.name %><%= first_man.name %></li>     
+    	<% end %>
+    </ul>
+    <ul>
+			<h2>一年女子</h2>
+    	<% @first_womans.each do |first_woman| %>
+        <li><%= check_box "first_w", first_woman.name %><%= first_woman.name %></li>     
+    	<% end %>
+    </ul>
+    <ul>
+			<h2>二年男子</h2>
+    	<% @second_mans.each do |second_man| %>
+        <li><%= check_box "second_m", second_man.name %><%= second_man.name %></li>     
+    	<% end %>
+    </ul>
+    <ul>
+			<h2>二年女子</h2>
+    	<% @second_womans.each do |second_woman| %>
+        <li><%= check_box "second_w", second_woman.name %><%= second_woman.name %></li>     
+    	<% end %>
+    </ul>
+    <input type="submit" value="投稿">
+<% end %>
+</div>        
+    
