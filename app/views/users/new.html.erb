@@ -1,0 +1,17 @@
+<h1>メンバー登録</h1>
+<%= form_with model: @user do |f| %>
+  <div>   
+    <%= f.label :grade, '学年' %>
+    <%= f.text_field :grade %>
+  </div>
+  <div>  
+    <p>男: <%= f.check_box :gender %></p>
+    <p>女: <%= f.check_box :gender %></p>
+  </div>
+  <div>
+    <%= f.label :name, '名前' %>
+    <%= f.text_field :name %>
+  </div>
+  <%= f.submit '登録' %>
+<% end %>
+<div><%= link_to 'ホーム', users_path %></div>
