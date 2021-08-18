@@ -1,7 +1,13 @@
 <h1>抽選していこうや</h1>
 <div><%= link_to '新規登録', new_user_path %></div>
 <div>
+
 <%= form_tag("/users") do %>
+    <div>
+		  <%= label :date, '練習日' %>
+	    <%= datetime_field_tag :date, :updated_at %>
+		</div>
+
     <div>
 			<ul>
 				<h2>一年男子</h2>
@@ -38,7 +44,7 @@
 			</ul>
 			<%= text_field :max_count, :second_w %>
 		</div>
-    <input type="submit" value="抽選">
+    <input type="submit" value="抽選" >
 <% end %>
 </div>        
     
