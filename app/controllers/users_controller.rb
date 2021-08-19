@@ -16,23 +16,29 @@ class UsersController < ApplicationController
         max_first_w = params["max_count"]["first_w"].to_i
         max_second_m = params["max_count"]["second_m"].to_i
         max_second_w = params["max_count"]["second_w"].to_i
+        
+        circle_date = CircleDate.create(date: params["date"].to_date)
 
-        date = params["date"].to_date
-
-        decide_user_group(max_first_m, checked_first_m, "1男", date)
-        decide_user_group(max_first_w, checked_first_w, "1女", date)
-        decide_user_group(max_second_m, checked_second_m, "2男", date)
-        decide_user_group(max_second_m, checked_second_w, "2女", date)
+        decide_user_group(max_first_m, checked_first_m, "1男", circle_date.id)
+        decide_user_group(max_first_w, checked_first_w, "1女", circle_date.id)
+        decide_user_group(max_second_m, checked_second_m, "2男", circle_date.id)
+        decide_user_group(max_second_m, checked_second_w, "2女", circle_date.id)
+        
+        redirect_to user_path(circle_date)
+        # binding.pry
     end    
 
-    def draw
-        @user = User.new(name: params[:user]["name"], grade: params[:user]["grade"], gender: params["gender"])
+    def new
+        # @user = User.new(name: params[:user]["name"], grade: params[:user]["grade"], gender: params["gender"])
+        @user = User.new
         @user.save
-        redirect_to users_path
+        # redirect_to users_path
     end
 
-    def new
-        @user = User.new
+    def show
+        circle_date = CircleDate.find(params[:id])
+        @all_groups = circle_date.groups
+        # binding.pry
     end
 
     private
@@ -51,9 +57,9 @@ class UsersController < ApplicationController
         end
     end
 
-    def decide_user_group(max_count, checked_members, status, date)
+    def decide_user_group(max_count, checked_members, status, circle_date_id)
         selected_member_names = select_members(max_count, checked_members)
-        group = Group.create(status: status, max: max_count, date: date)
+        group = Group.create(status: status, max: max_count, circle_date_id: circle_date_id)
         user_ids = User.where(name: selected_member_names).pluck(:id)
         create_user_groups(user_ids, group.id)
     end
