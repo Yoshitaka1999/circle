@@ -1,0 +1,7 @@
+<h1>サークル実施日</h1>
+<div>
+ <% @circle_dates.each do |circle_date| %>
+  <%= circle_date.date %>
+ <% end %>
+</div>
+<div><%= link_to 'ホーム', users_path %></div>
